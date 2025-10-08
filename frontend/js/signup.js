@@ -1,3 +1,11 @@
+// এই ফাইলটি সকল signup পেজের জন্য একটি একক JavaScript ক্লাস সরবরাহ করে।
+// মূল কাজসমূহ:
+// - মাল্টি-স্টেপ ফর্ম নিয়ন্ত্রণ
+// - ফিল্ড ভ্যালিডেশন
+// - পাসওয়ার্ড স্ট্রেংথ ও টগল
+// - ফর্ম সাবমিশন (simulate/real)
+// (বাংলা কমেন্টস) - লক্ষ্য: signup UI ও logic দ্রুত বোঝা
+
 // Unified JavaScript for all signup pages
 
 class UnifiedSignup {
