@@ -3,10 +3,15 @@
 // 📁 routes/authRoutes.js
 const express = require('express');
 const router = express.Router();
-const { register, login } = require('../controllers/authController');
+const { register, login, logout, getMe } = require('../controllers/authController');
+const protect = require('../middleware/authMiddleware');
+const csrfProtection = require('../middleware/csrfProtection');
 
-// 🔐 রেজিস্টার ও লগইন API
+// 🔐 রেজিস্টার, লগইন ও লগআউট API
 router.post('/register', register);
 router.post('/login', login);
+// লগআউট একটি state-changing অপারেশন — auth + csrf প্রোটেক্ট করা উচিত
+router.post('/logout', protect, csrfProtection, logout);
+router.get('/me', protect, getMe);
 
 module.exports = router;

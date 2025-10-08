@@ -36,17 +36,28 @@
 
   <!-- ✅ Token Verification -->
   <script>
-    const token = localStorage.getItem('token');
-    const role = localStorage.getItem('role');
+    async function checkAuth() {
+      try {
+        const res = await fetch('http://localhost:5000/api/auth/me', { credentials: 'include' });
+        if (!res.ok) throw new Error('not-authenticated');
+        const data = await res.json();
+        if (!data.user || data.user.role !== 'teacher') throw new Error('invalid-role');
+      } catch (err) {
+        alert('অনুগ্রহ করে লগইন করুন');
+        window.location.href = '/index.html';
+      }
+    }
+    checkAuth();
 
-    if (!token || role !== 'teacher') {
-      alert('অনুগ্রহ করে লগইন করুন');
-      window.location.href = '/index.html';
+    function getCookie(name) {
+      const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+      return v ? v.pop() : '';
     }
 
-    function logout() {
-      localStorage.removeItem('token');
-      localStorage.removeItem('role');
+    async function logout() {
+      const csrf = getCookie('csrfToken');
+      try { await fetch('http://localhost:5000/api/auth/logout', { method: 'POST', credentials: 'include', headers: { 'X-CSRF-Token': csrf } }); } catch (e) {}
+  // ...existing code...
       window.location.href = '/index.html';
     }
   </script>

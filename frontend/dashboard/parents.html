@@ -25,15 +25,27 @@
     <button class="logout-btn" onclick="logout()">🚪 লগআউট করুন</button>
   </div>
   <script>
-    const token = localStorage.getItem('token');
-    const role = localStorage.getItem('role');
-    if (!token || role !== 'parents') {
-      alert('অনুগ্রহ করে লগইন করুন');
-      window.location.href = '/index.html';
+    async function checkAuth() {
+      try {
+        const res = await fetch('http://localhost:5000/api/auth/me', { credentials: 'include' });
+        if (!res.ok) throw new Error('not-authenticated');
+        const data = await res.json();
+        if (!data.user || data.user.role !== 'parents') throw new Error('invalid-role');
+      } catch (err) {
+        alert('অনুগ্রহ করে লগইন করুন');
+        window.location.href = '/index.html';
+      }
     }
-    function logout() {
-      localStorage.removeItem('token');
-      localStorage.removeItem('role');
+    checkAuth();
+    function getCookie(name) {
+      const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+      return v ? v.pop() : '';
+    }
+
+    async function logout() {
+      const csrf = getCookie('csrfToken');
+      try { await fetch('http://localhost:5000/api/auth/logout', { method: 'POST', credentials: 'include', headers: { 'X-CSRF-Token': csrf } }); } catch (e) {}
+  // ...existing code...
       window.location.href = '/index.html';
     }
   </script>

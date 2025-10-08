@@ -7,7 +7,13 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 const protect = async (req, res, next) => {
+  // প্রথমে Authorization header পরীক্ষা করি
   let token = req.headers.authorization?.split(' ')[1];
+
+  // যদি header না থাকে, তখন HttpOnly cookie থেকে টোকেন নেওয়া হবে (migration mode)
+  if (!token && req.cookies && req.cookies.token) {
+    token = req.cookies.token;
+  }
 
   if (!token) return res.status(401).json({ message: 'টোকেন অনুপস্থিত' });
 

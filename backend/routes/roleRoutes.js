@@ -4,9 +4,12 @@
 const express = require('express');
 const router = express.Router();
 const roleController = require('../controllers/roleController');
+const protect = require('../middleware/authMiddleware');
+const csrfProtection = require('../middleware/csrfProtection');
 
 // 🔐 রোল CRUD API
 router.get('/roles', roleController.getAllRoles);
-router.post('/roles', roleController.createRole);
+// নতুন রোল তৈরি করা হলে auth + csrf চেক করা হবে
+router.post('/roles', protect, csrfProtection, roleController.createRole);
 
 module.exports = router;

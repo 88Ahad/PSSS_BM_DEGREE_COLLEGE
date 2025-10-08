@@ -9,6 +9,9 @@ const express = require('express'); // Express ফ্রেমওয়ার্ক
 const mongoose = require('mongoose'); // MongoDB কানেকশন
 const dotenv = require('dotenv'); // .env ফাইল থেকে কনফিগ লোড
 const cors = require('cors'); // Cross-Origin Resource Sharing
+const cookieParser = require('cookie-parser'); // Cookie parsing for HttpOnly cookies
+const helmet = require('helmet'); // security headers
+const rateLimit = require('express-rate-limit'); // rate limiting
 
 // 🔧 .env ফাইল লোড করা
 dotenv.config();
@@ -17,15 +20,31 @@ dotenv.config();
 const app = express();
 
 // 🔐 Middleware ব্যবহার
-app.use(cors()); // অন্য ডোমেইন থেকে রিকুয়েস্ট অনুমোদন
+// CORS: allow credentials so that cookies can be sent/received
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || true, // dev: reflect origin; production: set FRONTEND_URL
+  credentials: true,
+};
+app.use(cors(corsOptions)); // অন্য ডোমেইন থেকে রিকুয়েস্ট অনুমোদন (কুকি সহ)
 app.use(express.json()); // JSON body পার্স করার জন্য
+app.use(cookieParser()); // কুকি পড়ার জন্য
+app.use(helmet()); // set secure HTTP headers
+
+// Rate limiter: protect auth endpoints from brute force
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 20, // limit each IP to 20 requests per windowMs
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // 📡 Routes ইমপোর্ট করা
 const authRoutes = require('./routes/authRoutes'); // রেজিস্টার/লগইন API
 const roleRoutes = require('./routes/roleRoutes'); // রোল ম্যানেজমেন্ট API
 
 // 📦 Routes ব্যবহার করা
-app.use('/api/auth', authRoutes); // 🔐 Auth API
+// Apply rate limiter to auth routes
+app.use('/api/auth', authLimiter, authRoutes); // 🔐 Auth API
 app.use('/api/roles', roleRoutes); // 🔐 Role API
 
 // 🌐 Root Route (চেক করার জন্য)

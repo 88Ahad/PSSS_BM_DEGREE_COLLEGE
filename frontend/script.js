@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include', // cookie-ভিত্তিক auth গ্রহণের জন্য
         body: JSON.stringify({ email, password, role: selectedRole })
       });
 
@@ -40,10 +41,9 @@ document.addEventListener('DOMContentLoaded', function () {
       // ✅ সফল লগইন
       showAlert(`স্বাগতম ${data.user.fullName}!`, 'success');
 
-      // 🔐 JWT টোকেন সংরক্ষণ
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('role', data.user.role);
-
+      // 🔐 token এখন HttpOnly cookie তে সেট করা হয়েছে (frontend থেকে অ্যাক্সেসযোগ্য নয়)
+      // রিডাইরেকশনের জন্য সরাসরি সার্ভার থেকে পাওয়া ইউজাররোল ব্যবহার করছি —
+      // কোনো ক্লায়েন্ট-সাইড persistent token বা role localStorage-এ রাখা হবে না।
       // 🔀 রোল অনুযায়ী রিডাইরেক্ট
       setTimeout(() => {
         window.location.href = `/dashboard/${data.user.role}.html`;
