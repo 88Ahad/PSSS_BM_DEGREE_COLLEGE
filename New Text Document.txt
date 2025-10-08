@@ -12,4 +12,4 @@ git remote add origin https://github.com/88Ahad/PSSS_BM_DEGREE_COLLEGE.git
 git branch -M main
 git push -u origin main
 
-remote
+git commit -m "ssss on New Text Document.txt file"
