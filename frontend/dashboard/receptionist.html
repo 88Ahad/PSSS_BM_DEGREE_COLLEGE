@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>Receptionist Dashboard - PSSS B.M DEGREE COLLEGE</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+  <div class="header">
+    <h1>PSSS B.M DEGREE COLLEGE</h1>
+    <p>📞 রিসেপশনিস্ট ড্যাশবোর্ড</p>
+  </div>
+  <div class="sidebar">
+    <ul>
+        <li><a href="#">ভিজিটর লগ</a></li>
+        <li><a href="#">ইনকোয়ারি</a></li>
+    </ul>
+  </div>
+  <div class="main">
+    <h2>স্বাগতম রিসেপশনিস্ট!</h2>
+    <button class="logout-btn" onclick="logout()">🚪 লগআউট করুন</button>
+  </div>
+  <script>
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+    if (!token || role !== 'receptionist') {
+      alert('অনুগ্রহ করে লগইন করুন');
+      window.location.href = '/index.html';
+    }
+    function logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      window.location.href = '/index.html';
+    }
+  </script>
+</body>
+</html>
+<!-- 📁 frontend/dashboard/super-admin.html -->

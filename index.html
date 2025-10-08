@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSSS B.M DEGREE COLLEGE - লগইন</title>
+    <!-- ফন্ট অ Awesome আইকন লিঙ্ক -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS ফাইল লিঙ্ক -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- লোগো সেকশন -->
+        <div class="logo">
+            <h1>PSSS B.M DEGREE <span>COLLEGE</span></h1>
+            <p><span>স্কুল ম্যানেজমেন্ট সিস্টেম</span></p>
+        </div>
+        
+        <!-- লগইন ফর্ম সেকশন -->
+        <div class="login-form">
+            <h2>আপনার অ্যাকাউন্টে লগইন করুন</h2>
+            
+            <form id="loginForm">
+                <!-- ইমেইল ইনপুট ফিল্ড -->
+                <div class="form-group">
+                    <label for="email">ইমেইল এড্রেস</label>
+                    <input type="email" id="email" placeholder="আপনার ইমেইল এড্রেস লিখুন" required>
+                    <i class="fas fa-envelope icon"></i>
+                </div>
+                
+                <!-- পাসওয়ার্ড ইনপুট ফিল্ড -->
+                <div class="form-group">
+                    <label for="password">পাসওয়ার্ড</label>
+                    <input type="password" id="password" placeholder="আপনার পাসওয়ার্ড লিখুন" required>
+                    <i class="fas fa-lock icon"></i>
+                </div>
+                
+                <!-- অপশনস সেকশন - রিমেমবার মি এবং ফরগট পাসওয়ার্ড -->
+                <div class="options">
+                    <div class="remember">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">আমাকে মনে রাখুন</label>
+                    </div>
+                    <a href="#" class="forgot-password">পাসওয়ার্ড ভুলে গেছেন?</a>
+                </div>
+                
+                <!-- লগইন বাটন -->
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> লগইন করুন
+                </button>
+            </form>
+            
+            <!-- ডিভাইডার লাইন -->
+            <div class="divider">
+                <span>অথবা নির্বাচন করুন</span>
+            </div>
+            
+            <!-- রোল সিলেকশন সেকশন -->
+            <div class="role-selection">
+                <h3>কিভাবে লগইন করবেন?</h3>
+                
+                <div class="roles">
+                    <div class="role active" data-role="super-admin">
+                        <i class="fas fa-crown"></i>
+                        <span>সুপার অ্যাডমিন</span>
+                    </div>
+                    <div class="role" data-role="admin">
+                        <i class="fas fa-user-shield"></i>
+                        <span>অ্যাডমিন</span>
+                    </div>
+                    <div class="role" data-role="teacher">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>শিক্ষক</span>
+                    </div>
+                    <div class="role" data-role="parents">
+                        <i class="fas fa-users"></i>
+                        <span>প্যারেন্টস</span>
+                    </div>
+                    <div class="role" data-role="accountant">
+                        <i class="fas fa-calculator"></i>
+                        <span>অ্যাকাউন্টেন্ট</span>
+                    </div>
+                    <div class="role" data-role="receptionist">
+                        <i class="fas fa-headset"></i>
+                        <span>রিসেপশনিস্ট</span>
+                    </div>
+                    <div class="role" data-role="librarian">
+                        <i class="fas fa-book"></i>
+                        <span>লাইব্রেরিয়ান</span>
+                    </div>
+                    <div class="role" data-role="student">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>ছাত্র</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript ফাইল লিঙ্ক -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSSS B.M DEGREE COLLEGE - শিক্ষক সাইনআপ</title>
+    <!-- ফন্ট অ Awesome আইকন লিঙ্ক -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS ফাইল লিঙ্ক -->
+    <link rel="stylesheet" href="../css/signup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- লোগো সেকশন -->
+        <div class="logo">
+            <h1>PSSS B.M DEGREE <span>COLLEGE</span></h1>
+            <p>কলেজ ম্যানেজমেন্ট সিস্টেম</p>
+            <p class="page-title">শিক্ষক রেজিস্ট্রেশন</p>
+        </div>
+        
+        <!-- সাইনআপ ফর্ম সেকশন -->
+        <div class="signup-form">
+            <h2>শিক্ষক একাউন্ট তৈরি করুন</h2>
+            
+            <!-- প্রগ্রেস বার -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">ধাপ <span id="currentStep">1</span> / 2</div>
+            </div>
+            
+            <form id="signupForm">
+                <!-- ব্যক্তিগত তথ্য সেকশন -->
+                <div class="form-section step-1 active" data-step="1">
+                    <h3><i class="fas fa-user"></i> ব্যক্তিগত তথ্য</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">পূর্ণ নাম *</label>
+                            <input type="text" id="fullName" placeholder="আপনার পূর্ণ নাম লিখুন" required>
+                            <i class="fas fa-user icon"></i>
+                            <div class="error-message" id="fullNameError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">ফোন নম্বর *</label>
+                            <input type="tel" id="phone" placeholder="০১৭XX-XXXXXX" required>
+                            <i class="fas fa-phone icon"></i>
+                            <div class="error-message" id="phoneError"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="teacherId">শিক্ষক আইডি *</label>
+                            <input type="text" id="teacherId" placeholder="TCH-2024-001" required>
+                            <i class="fas fa-id-card icon"></i>
+                            <div class="error-message" id="teacherIdError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="qualification">শিক্ষাগত যোগ্যতা *</label>
+                            <select id="qualification" required>
+                                <option value="">যোগ্যতা নির্বাচন করুন</option>
+                                <option value="bachelor">স্নাতক</option>
+                                <option value="master">স্নাতকোত্তর</option>
+                                <option value="bed">বি.এড</option>
+                                <option value="med">এম.এড</option>
+                                <option value="phd">পিএইচডি</option>
+                            </select>
+                            <i class="fas fa-graduation-cap icon"></i>
+                            <div class="error-message" id="qualificationError"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="subject">প্রধান বিষয় *</label>
+                            <select id="subject" required>
+                                <option value="">বিষয় নির্বাচন করুন</option>
+                                <option value="bangla">বাংলা</option>
+                                <option value="english">ইংরেজি</option>
+                                <option value="math">গণিত</option>
+                                <option value="science">বিজ্ঞান</option>
+                                <option value="physics">পদার্থবিজ্ঞান</option>
+                                <option value="chemistry">রসায়ন</option>
+                                <option value="biology">জীববিজ্ঞান</option>
+                                <option value="history">ইতিহাস</option>
+                                <option value="geography">ভূগোল</option>
+                                <option value="ict">আইসিটি</option>
+                            </select>
+                            <i class="fas fa-book icon"></i>
+                            <div class="error-message" id="subjectError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience">অভিজ্ঞতা (বছর)</label>
+                            <input type="number" id="experience" placeholder="০" min="0" max="50">
+                            <i class="fas fa-clock icon"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- লগইন তথ্য সেকশন -->
+                <div class="form-section step-2" data-step="2">
+                    <h3><i class="fas fa-key"></i> লগইন তথ্য</h3>
+                    
+                    <div class="form-group">
+                        <label for="email">ইমেইল ঠিকানা *</label>
+                        <input type="email" id="email" placeholder="teacher@school.com" required>
+                        <i class="fas fa-envelope icon"></i>
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">পাসওয়ার্ড *</label>
+                            <input type="password" id="password" placeholder="পাসওয়ার্ড দিন" required>
+                            <i class="fas fa-lock icon"></i>
+                            <span class="toggle-password"><i class="fas fa-eye"></i></span>
+                            <div class="password-strength" id="passwordStrength">
+                                <div class="strength-bar"></div>
+                                <div class="strength-bar"></div>
+                                <div class="strength-bar"></div>
+                                <span class="strength-text"></span>
+                            </div>
+                            <div class="error-message" id="passwordError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmPassword">পাসওয়ার্ড নিশ্চিত করুন *</label>
+                            <input type="password" id="confirmPassword" placeholder="পাসওয়ার্ড আবার লিখুন" required>
+                            <i class="fas fa-lock icon"></i>
+                            <i class="fas fa-eye toggle-password" id="togglePassword2"></i>
+                            <div class="error-message" id="confirmPasswordError"></div>
+                        </div>
+                    </div>
+
+                    <!-- শর্তাবলী -->
+                    <div class="form-group terms">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">
+                            আমি <a href="#" class="terms-link">সেবা শর্তাবলী</a> এবং 
+                            <a href="#" class="privacy-link">গোপনীয়তা নীতি</a> পড়েছি এবং সম্মতি দিচ্ছি *
+                        </label>
+                        <div class="error-message" id="termsError"></div>
+                    </div>
+                </div>
+                
+                <!-- নেভিগেশন বাটনস -->
+                <div class="form-navigation">
+                    <button type="button" class="nav-btn prev-btn" id="prevBtn" style="display: none;">
+                        <i class="fas fa-arrow-left"></i> পূর্ববর্তী
+                    </button>
+                    
+                    <button type="button" class="nav-btn next-btn" id="nextBtn">
+                        পরবর্তী <i class="fas fa-arrow-right"></i>
+                    </button>
+                    
+                    <!-- সাবমিট বাটন -->
+                    <button type="submit" class="signup-btn" id="submitBtn" style="display: none;">
+                        <i class="fas fa-user-plus"></i> একাউন্ট তৈরি করুন
+                    </button>
+                </div>
+
+                <!-- রোল হিডেন ইনপুট -->
+                <input type="hidden" id="role" value="teacher">
+            </form>
+            
+            <!-- লগইন লিঙ্ক -->
+            <div class="login-link">
+                ইতিমধ্যে একটি একাউন্ট আছে? <a href="../../index.html">লগইন করুন</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript ফাইল লিঙ্ক -->
+    <script src="../js/signup.js"></script>
+</body>
+</html>

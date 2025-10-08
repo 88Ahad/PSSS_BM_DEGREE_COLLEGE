@@ -1,0 +1,241 @@
+/* সাধারণ স্টাইল - সব এলিমেন্টের জন্য */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* body স্টাইল - পৃষ্ঠার কেন্দ্রিক করা */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #976aec 0%, #c3cfe2 100%);
+    padding: 20px;
+}
+
+/* মূল কন্টেইনার স্টাইল */
+.container {
+    max-width: 500px;
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 40px;
+}
+
+/* লোগো স্টাইল */
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo h1 {
+    color: #2a4fcf;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.logo span {
+    color: #4a6cf7;
+}
+
+.logo p {
+    color: #777;
+    margin-top: 5px;
+}
+
+/* লগইন ফর্ম হেডিং */
+.login-form h2 {
+    color: #333;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 24px;
+}
+
+/* ফর্ম গ্রুপ স্টাইল - ইনপুট ফিল্ড */
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 14px 14px 40px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #4a6cf7;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.2);
+}
+
+.form-group .icon {
+    position: absolute;
+    left: 15px;
+    top: 38px;
+    color: #777;
+}
+
+/* অপশন স্টাইল - রিমেমবার মি এবং ফরগট পাসওয়ার্ড */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+}
+
+.remember input {
+    margin-right: 8px;
+}
+
+.forgot-password {
+    color: #4a6cf7;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* লগইন বাটন স্টাইল */
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background: #4a6cf7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-btn:hover {
+    background: #2a4fcf;
+}
+
+/* ডিভাইডার লাইন স্টাইল */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+    color: #777;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+}
+
+.divider span {
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+/* রোল সিলেকশন স্টাইল */
+.role-selection {
+    margin-top: 20px;
+}
+
+.role-selection h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 18px;
+}
+
+.roles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.role {
+    padding: 12px 8px;
+    text-align: center;
+    background: #f5f7fa;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    color: #555;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.role:hover {
+    background: #e6eeff;
+    color: #4a6cf7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 108, 247, 0.2);
+}
+
+.role.active {
+    background: #4a6cf7;
+    color: white;
+    border-color: #4a6cf7;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(74, 108, 247, 0.3);
+}
+
+.role i {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+/* মোবাইল রেসপনসিভ স্টাইল */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 20px;
+    }
+    
+    .roles {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .role {
+        font-size: 13px;
+        padding: 10px 5px;
+    }
+}
+
+/* ছোট স্ক্রিনের জন্য আরও রেসপনসিভ */
+@media (max-width: 480px) {
+    .roles {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 8px;
+    }
+}

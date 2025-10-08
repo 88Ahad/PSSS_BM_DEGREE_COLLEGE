@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard - PSSS B.M DEGREE COLLEGE</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+  <!-- ✅ Header -->
+  <div class="header">
+    <h1>PSSS B.M DEGREE COLLEGE</h1>
+    <p>👨‍🏫 শিক্ষক ড্যাশবোর্ড</p>
+  </div>
+
+  <!-- ✅ Sidebar -->
+  <div class="sidebar">
+    <ul>
+      <li><a href="#">প্রোফাইল</a></li>
+      <li><a href="#">ক্লাস রুটিন</a></li>
+      <li><a href="#">রিপোর্ট</a></li>
+      <li><a href="#">নোটিশ</a></li>
+    </ul>
+  </div>
+
+  <!-- ✅ Main Content -->
+  <div class="main">
+    <h2>স্বাগতম শিক্ষক!</h2>
+    <p>আপনি সফলভাবে লগইন করেছেন।</p>
+    <button class="logout-btn" onclick="logout()">🚪 লগআউট করুন</button>
+  </div>
+
+  <!-- ✅ Token Verification -->
+  <script>
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+
+    if (!token || role !== 'teacher') {
+      alert('অনুগ্রহ করে লগইন করুন');
+      window.location.href = '/index.html';
+    }
+
+    function logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      window.location.href = '/index.html';
+    }
+  </script>
+</body>
+</html>
+<!-- 📁 frontend/dashboard/teacher.html -->
