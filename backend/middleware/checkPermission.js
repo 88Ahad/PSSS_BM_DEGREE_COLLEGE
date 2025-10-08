@@ -4,7 +4,13 @@ module.exports = (requiredPermission) => {
   return async (req, res, next) => {
     const user = req.user; // 🔍 JWT থেকে ইউজার পাওয়া
 
-    if (!user || !user.permissions.includes(requiredPermission)) {
+    // Null-safe checks: user এবং permissions অ্যারে যাচাই
+    if (!user) {
+      return res.status(401).json({ message: 'টোকেন বা ইউজার তথ্য অনুপস্থিত' });
+    }
+
+    const permissions = user.permissions;
+    if (!Array.isArray(permissions) || !permissions.includes(requiredPermission)) {
       return res.status(403).json({ message: '⛔ অনুমতি নেই' });
     }
 

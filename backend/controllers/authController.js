@@ -19,16 +19,21 @@ exports.register = async (req, res) => {
   }
 };
 
-// ✅ লগইন API
+// ✅ লগইন API (optional: role validation)
 exports.login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role: requestedRole } = req.body;
 
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: 'ইমেইল খুঁজে পাওয়া যায়নি' });
 
     const isMatch = await user.matchPassword(password);
     if (!isMatch) return res.status(401).json({ message: 'পাসওয়ার্ড সঠিক নয়' });
+
+    // যদি ক্লায়েন্ট role পাঠায়, নিশ্চিত করি ইউজারের role এর সাথে মিলে
+    if (requestedRole && user.role !== requestedRole) {
+      return res.status(403).json({ message: 'আপনার রোল অনুপস্থিত বা মিল নেই' });
+    }
 
     const token = generateToken(user);
     res.json({ user, token });

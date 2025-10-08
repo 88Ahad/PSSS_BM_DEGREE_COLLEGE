@@ -27,19 +27,22 @@ app.get('/', (req, res) => {
   res.send('🎓 PSSS B.M DEGREE COLLEGE API চলছে...');
 });
 
-// 🛠️ MongoDB কানেকশন শুরু
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
-  console.log('✅ MongoDB কানেক্ট হয়েছে');
+// 🛠️ MongoDB কানেকশন শুরু (config থেকে)
+const connectDB = require('./config/db');
 
-  // 🚀 Server চালু করা
-  const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => {
-    console.log(`🚀 Server চলছে PORT ${PORT} এ`);
-  });
+const startServer = async () => {
+  try {
+    await connectDB();
 
-}).catch((err) => {
-  console.error('❌ MongoDB কানেক্ট করতে সমস্যা:', err.message);
-});
+    // 🚀 Server চালু করা
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+      console.log(`🚀 Server চলছে PORT ${PORT} এ`);
+    });
+  } catch (err) {
+    console.error('❌ সার্ভার শুরু করতে ব্যর্থ:', err.message);
+    process.exit(1);
+  }
+};
+
+startServer();
